@@ -3,13 +3,40 @@
  */
 package sample.kotlin.spring
 
+import org.springframework.boot.CommandLineRunner
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.annotation.Bean
+import sample.kotlin.spring.model.entities.Meal
+import sample.kotlin.spring.model.repository.MealRepository
+
+@SpringBootApplication
 class App {
-    val greeting: String
-        get() {
-            return "Hello world."
+    fun main(args: Array<String>) {
+        SpringApplication.run(App::class.java)
+    }
+
+    @Bean
+    fun sampleData(repository : MealRepository): CommandLineRunner{
+        val gaduIngredients = HashMap<String, Int>()
+        val paellaIngredients = HashMap<String, Int>()
+        val redCurryIngredients = HashMap<String, Int>()
+
+        gaduIngredients.put("Rice", 200)
+        gaduIngredients.put("Butternut Squash", 100)
+
+        paellaIngredients.put("Rice", 200)
+        paellaIngredients.put("Mussels", 100)
+
+        redCurryIngredients.put("Rice", 200)
+        redCurryIngredients.put("Coconut Milk", 100)
+
+        return CommandLineRunner {
+            repository.save(Meal("Gadu gadu", "Indonesian rice", gaduIngredients))
+            repository.save(Meal("Paella", "Spanish rice", paellaIngredients))
+            repository.save(Meal("Thai red curry", "Thai rice", redCurryIngredients))
         }
+    }
 }
 
-fun main(args: Array<String>) {
-    println(App().greeting)
-}
+
