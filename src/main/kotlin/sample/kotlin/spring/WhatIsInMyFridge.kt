@@ -10,14 +10,26 @@ import org.springframework.context.annotation.Bean
 import sample.kotlin.spring.model.entities.Meal
 import sample.kotlin.spring.model.repository.MealRepository
 
+
 @SpringBootApplication
-class App {
-    fun main(args: Array<String>) {
-        SpringApplication.run(App::class.java)
+open class WhatIsInMyFridge {
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            SpringApplication.run(WhatIsInMyFridge::class.java)
+        }
     }
 
+//    @Autowired
+//    private val errorAttributes: ErrorAttributes? = null
+//
+//    @Bean
+//    open fun appErrorController(): AppErrorController? {
+//        return AppErrorController(errorAttributes)
+//    }
+
     @Bean
-    fun sampleData(repository : MealRepository): CommandLineRunner{
+    open fun sampleData(repository : MealRepository): CommandLineRunner{
         val gaduIngredients = HashMap<String, Int>()
         val paellaIngredients = HashMap<String, Int>()
         val redCurryIngredients = HashMap<String, Int>()
@@ -38,5 +50,3 @@ class App {
         }
     }
 }
-
-
