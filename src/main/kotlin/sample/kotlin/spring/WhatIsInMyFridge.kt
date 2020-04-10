@@ -20,27 +20,19 @@ open class WhatIsInMyFridge {
         }
     }
 
-//    @Autowired
-//    private val errorAttributes: ErrorAttributes? = null
-//
-//    @Bean
-//    open fun appErrorController(): AppErrorController? {
-//        return AppErrorController(errorAttributes)
-//    }
-
     @Bean
     open fun sampleData(repository : MealRepository): CommandLineRunner{
         val gaduIngredients = HashMap<String, Int>()
         val paellaIngredients = HashMap<String, Int>()
         val redCurryIngredients = HashMap<String, Int>()
 
-        gaduIngredients.put("Rice", 200)
-        gaduIngredients.put("Butternut Squash", 100)
+        gaduIngredients["Rice"] = 200
+        gaduIngredients["Butternut Squash"] = 100
 
-        paellaIngredients.put("Rice", 200)
-        paellaIngredients.put("Mussels", 100)
+        paellaIngredients["Rice"] = 200
+        paellaIngredients["Mussels"] = 100
 
-        redCurryIngredients.put("Rice", 200)
+        redCurryIngredients["Rice"] = 200
         redCurryIngredients.put("Coconut Milk", 100)
 
         return CommandLineRunner {
