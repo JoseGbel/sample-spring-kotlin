@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import sample.kotlin.spring.model.entities.Meal
 import sample.kotlin.spring.model.repository.MealRepository
 
@@ -18,6 +19,11 @@ open class WhatIsInMyFridge {
         fun main(args: Array<String>) {
             SpringApplication.run(WhatIsInMyFridge::class.java)
         }
+    }
+
+    @Bean
+    open fun bCryptPasswordEncoder() : BCryptPasswordEncoder {
+        return BCryptPasswordEncoder()
     }
 
     @Bean
